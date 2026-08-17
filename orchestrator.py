@@ -102,24 +102,32 @@ def route(state: StartupState):
 def final_plan(state: StartupState):
     return ask_llm(
         FINAL_INSTRUCTIONS,
-        f"""Create the final business plan from this shared state:
+        f"""Create a concise final business plan from this shared state:
 
 {state.snapshot()}
 
-Include:
+Keep the entire response under approximately 1500 words.
 
-- Executive summary
-- Problem and solution
-- Target customers
-- Value proposition
-- Business model
-- MVP features
-- Technology approach
-- Marketing strategy
-- Basic financial considerations
-- Main risks
-- 30/60/90-day priorities
-- Final recommendation
+Use exactly these sections:
+
+1. Executive Summary
+2. Problem & Solution
+3. Target Customers
+4. Value Proposition
+5. Business Model
+6. MVP Features
+7. Technology Approach
+8. Marketing Strategy
+9. Financial Assumptions
+10. Main Risks
+11. 30/60/90-Day Priorities
+12. Final Recommendation
+
+For financial figures, market claims, and projections:
+- Clearly label them as assumptions or estimates.
+- Do not present invented statistics as verified facts.
+
+Keep each section concise and practical.
 """
     )
 
